@@ -34,6 +34,9 @@ __meta__ = {
 [node name="Collision" type="CollisionShape2D" parent="Paddle"]
 shape = SubResource( 1 )
 
+[node name="Anchor" type="Position2D" parent="Paddle"]
+position = Vector2( 0, 32 )
+
 [node name="Ball" type="RigidBody2D" parent="."]
 position = Vector2( 320, 288 )
 mode = 2
