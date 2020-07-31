@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-const SPEEDUP = 400
-const MAXSPEED = 30000
+const SPEEDUP = 4
+const MAXSPEED = 400
 
 func _ready():
 	set_physics_process(true)
@@ -10,6 +10,7 @@ func _physics_process(delta):
 	var bodies = get_colliding_bodies()
 	for body in bodies:
 		if body.is_in_group("Bricks"):
+			get_node("/root/World").score += 5
 			body.queue_free()
 		
 		if body.get_name() == "Paddle":

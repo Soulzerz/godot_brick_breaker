@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/paddle.png" type="Texture" id=1]
 [ext_resource path="res://Mini Scenes/Ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=3]
 [ext_resource path="res://Mini Scenes/Brick.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/World.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 4 )
 
 [node name="World" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="Paddle" type="KinematicBody2D" parent="."]
 position = Vector2( 320, 320 )
@@ -59,3 +61,11 @@ position = Vector2( 192, 96 )
 
 [node name="Brick8" parent="Bricks" instance=ExtResource( 4 )]
 position = Vector2( 64, 96 )
+
+[node name="Score" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
