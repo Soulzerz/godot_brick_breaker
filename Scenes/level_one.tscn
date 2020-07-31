@@ -1,22 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/paddle.png" type="Texture" id=1]
-[ext_resource path="res://Sprites/ball.png" type="Texture" id=2]
+[ext_resource path="res://Mini Scenes/Ball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Paddle.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/brick.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/Ball.gd" type="Script" id=5]
+[ext_resource path="res://Mini Scenes/Brick.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 4 )
-
-[sub_resource type="PhysicsMaterial" id=2]
-friction = 0.0
-bounce = 1.0
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 4, 4 )
-
-[sub_resource type="RectangleShape2D" id=4]
 
 [node name="World" type="Node2D"]
 
@@ -37,25 +27,7 @@ shape = SubResource( 1 )
 [node name="Anchor" type="Position2D" parent="Paddle"]
 position = Vector2( 0, 32 )
 
-[node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2( 320, 288 )
-mode = 2
-physics_material_override = SubResource( 2 )
-gravity_scale = 0.0
-contacts_reported = 1
-contact_monitor = true
-linear_velocity = Vector2( 200, -200 )
-script = ExtResource( 5 )
-
-[node name="Sprite" type="Sprite" parent="Ball"]
-scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Ball"]
-shape = SubResource( 3 )
+[node name="Ball" parent="." instance=ExtResource( 2 )]
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -64,173 +36,26 @@ polygon = PoolVector2Array( 0, 0, 0, 384, -64, 384, -64, -64, 704, -64, 704, 384
 
 [node name="Bricks" type="Node2D" parent="."]
 
-[node name="Brick" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
-position = Vector2( 64, 32 )
+[node name="Brick" parent="Bricks" instance=ExtResource( 4 )]
+position = Vector2( 128, 32 )
 
-[node name="Sprite" type="Sprite" parent="Bricks/Brick"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Brick2" parent="Bricks" instance=ExtResource( 4 )]
+position = Vector2( 448, 96 )
 
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Brick3" parent="Bricks" instance=ExtResource( 4 )]
+position = Vector2( 512, 32 )
 
-[node name="Brick2" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
-position = Vector2( 512, 96 )
-
-[node name="Sprite" type="Sprite" parent="Bricks/Brick2"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick2"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Brick3" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
+[node name="Brick4" parent="Bricks" instance=ExtResource( 4 )]
 position = Vector2( 320, 96 )
 
-[node name="Sprite" type="Sprite" parent="Bricks/Brick3"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick3"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Brick4" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
-position = Vector2( 128, 96 )
-
-[node name="Sprite" type="Sprite" parent="Bricks/Brick4"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick4"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Brick5" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
-position = Vector2( 544, 32 )
-
-[node name="Sprite" type="Sprite" parent="Bricks/Brick5"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick5"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Brick6" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
-position = Vector2( 384, 160 )
-
-[node name="Sprite" type="Sprite" parent="Bricks/Brick6"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick6"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Brick7" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
+[node name="Brick5" parent="Bricks" instance=ExtResource( 4 )]
 position = Vector2( 384, 32 )
 
-[node name="Sprite" type="Sprite" parent="Bricks/Brick7"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Brick6" parent="Bricks" instance=ExtResource( 4 )]
+position = Vector2( 256, 32 )
 
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick7"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Brick7" parent="Bricks" instance=ExtResource( 4 )]
+position = Vector2( 192, 96 )
 
-[node name="Brick8" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
-position = Vector2( 224, 32 )
-
-[node name="Sprite" type="Sprite" parent="Bricks/Brick8"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick8"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Brick9" type="StaticBody2D" parent="Bricks" groups=[
-"Bricks",
-]]
-position = Vector2( 224, 160 )
-
-[node name="Sprite" type="Sprite" parent="Bricks/Brick9"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Collision" type="CollisionShape2D" parent="Bricks/Brick9"]
-scale = Vector2( 3.05, 1.4 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="Brick8" parent="Bricks" instance=ExtResource( 4 )]
+position = Vector2( 64, 96 )
